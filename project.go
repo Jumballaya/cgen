@@ -4,6 +4,8 @@ import (
 	"os"
 	"strings"
 	"text/template"
+
+	templates "github.com/jumballaya/cgen/templates/c"
 )
 
 // ProjectData is config struct for the c files
@@ -54,11 +56,11 @@ func NewProject(name, root, author, email string) Project {
 	}
 
 	files := []ProjectFile{
-		newProjectFile(MakefileTemplate, "Makefile"),
-		newProjectFile(MainTemplate, "src/main.c"),
-		newProjectFile(HeaderTemplate, "inc/"+data.SafeName+".h"),
-		newProjectFile("\n", "src/"+data.SafeName+".c"),
-		newProjectFile(GitignoreTemplate, ".gitignore"),
+		newProjectFile(templates.MakefileTemplate(), "Makefile"),
+		newProjectFile(templates.MainTemplate(), "src/main.c"),
+		newProjectFile(templates.ExampleHeaderTemplate(), "inc/"+data.SafeName+".h"),
+		newProjectFile(templates.ExampleTemplate(), "src/"+data.SafeName+".c"),
+		newProjectFile(templates.GitignoreTemplate(), ".gitignore"),
 	}
 
 	return Project{data, files, root}
