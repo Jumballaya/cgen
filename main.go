@@ -12,9 +12,9 @@ Usage: cgen <Project Name> [OPTIONS]
 A tool for scaffolding out C projects
 
 Options:
-	-r, --root		sets Root folder to generate files in (default: "./")
-	-a, --author    sets the Author's name
-	-e, --email     sets the author's Email
+    -r, --root      sets Root folder to generate files in (default: "./")
+    -a, --author    sets the Author's name
+    -e, --email     sets the author's Email
 	`
 }
 
