@@ -46,6 +46,13 @@ func main() {
 		}
 	}
 
+	// If root doesn't exist, create it
+	if root != "./" {
+		if _, err := os.Stat(root); os.IsNotExist(err) {
+			os.Mkdir(root, os.ModePerm)
+		}
+	}
+
 	p := NewProject(name, root, author, email)
 	p.Run()
 }
