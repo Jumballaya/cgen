@@ -6,9 +6,9 @@
 
 package templates
 
-// ExampleTemplate is a generated function returning the template as a string.
+// CExampleTemplate is a generated function returning the template as a string.
 // That string should be parsed by the functions of the golang's template package.
-func ExampleTemplate() string {
+func CExampleTemplate() string {
 	var tmpl = ""
 	return tmpl
 }

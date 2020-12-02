@@ -5,7 +5,7 @@ import (
 	"strings"
 	"text/template"
 
-	templates "github.com/jumballaya/cgen/templates/c"
+	templates "github.com/jumballaya/cgen/templates"
 )
 
 // ProjectData is config struct for the c files
@@ -47,7 +47,7 @@ type Project struct {
 }
 
 // NewProject generates a new project from a name
-func NewProject(name, root, author, email string) Project {
+func NewProject(name, root, author, email, lang string) Project {
 	data := ProjectData{
 		Name:       name,
 		SafeName:   genSafeName(name),
@@ -55,14 +55,24 @@ func NewProject(name, root, author, email string) Project {
 		Author:     AuthorData{author, email},
 	}
 
-	files := []ProjectFile{
-		newProjectFile(templates.MakefileTemplate(), "Makefile"),
-		newProjectFile(templates.MainTemplate(), "src/main.c"),
-		newProjectFile(templates.ExampleHeaderTemplate(), "inc/"+data.SafeName+".h"),
-		newProjectFile(templates.ExampleTemplate(), "src/"+data.SafeName+".c"),
-		newProjectFile(templates.GitignoreTemplate(), ".gitignore"),
+	files := []ProjectFile{}
+	if lang == "c++" {
+		files = []ProjectFile{
+			newProjectFile(templates.CppMakefileTemplate(), "Makefile"),
+			newProjectFile(templates.CppMainTemplate(), "src/main.cpp"),
+			newProjectFile(templates.CppVectorHeaderTemplate(), "inc/Vector.h"),
+			newProjectFile(templates.CppGitignoreTemplate(), ".gitignore"),
+		}
 	}
-
+	if lang == "c" {
+		files = []ProjectFile{
+			newProjectFile(templates.CMakefileTemplate(), "Makefile"),
+			newProjectFile(templates.CMainTemplate(), "src/main.c"),
+			newProjectFile(templates.CExampleHeaderTemplate(), "inc/"+data.SafeName+".h"),
+			newProjectFile(templates.CExampleTemplate(), "src/"+data.SafeName+".c"),
+			newProjectFile(templates.CGitignoreTemplate(), ".gitignore"),
+		}
+	}
 	return Project{data, files, root}
 }
 

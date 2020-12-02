@@ -6,13 +6,14 @@
 
 package templates
 
-// ExampleHeaderTemplate is a generated function returning the template as a string.
+// CMainTemplate is a generated function returning the template as a string.
 // That string should be parsed by the functions of the golang's template package.
-func ExampleHeaderTemplate() string {
-	var tmpl = "#ifndef {{ .HeaderName }}\n" +
-		"#define {{ .HeaderName }}\n" +
+func CMainTemplate() string {
+	var tmpl = "#include <stdio.h>\n" +
 		"\n" +
-		"\n" +
-		"#endif"
+		"int main() {\n" +
+		"\tprintf(\"Hello World\\n\");\n" +
+		"\treturn 0;\n" +
+		"}"
 	return tmpl
 }

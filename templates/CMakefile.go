@@ -6,9 +6,9 @@
 
 package templates
 
-// MakefileTemplate is a generated function returning the template as a string.
+// CMakefileTemplate is a generated function returning the template as a string.
 // That string should be parsed by the functions of the golang's template package.
-func MakefileTemplate() string {
+func CMakefileTemplate() string {
 	var tmpl = "#######\n" +
 		"#\n" +
 		"#   Project: {{ .Name }} {{ if .Author.Name }}\n" +

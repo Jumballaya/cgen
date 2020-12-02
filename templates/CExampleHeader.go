@@ -6,10 +6,13 @@
 
 package templates
 
-// GitignoreTemplate is a generated function returning the template as a string.
+// CExampleHeaderTemplate is a generated function returning the template as a string.
 // That string should be parsed by the functions of the golang's template package.
-func GitignoreTemplate() string {
-	var tmpl = "bin/*\n" +
-		"obj/*"
+func CExampleHeaderTemplate() string {
+	var tmpl = "#ifndef {{ .HeaderName }}\n" +
+		"#define {{ .HeaderName }}\n" +
+		"\n" +
+		"\n" +
+		"#endif"
 	return tmpl
 }
